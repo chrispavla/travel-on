@@ -67,6 +67,7 @@ function Login() {
           <label>
             Password
             <input
+              id="myInput"
               type="password"
               name="password"
               value={password}

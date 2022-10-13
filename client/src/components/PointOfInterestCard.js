@@ -9,11 +9,7 @@ function PointOfInterestCard({ displayedLocation }) {
     </div>
   ));
 
-  return (
-    <div>
-      <h1>{pointdisplay}</h1>
-    </div>
-  );
+  return <div>{pointdisplay}</div>;
 }
 
 export default PointOfInterestCard;

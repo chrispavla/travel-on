@@ -1,3 +1,4 @@
 class PointOfInterestSerializer < ActiveModel::Serializer
-  attributes :id, :name, :image, :note, :user_id, :location_id
+  attributes :id, :name, :image, :note, :user, :location
+  has_one :user
 end

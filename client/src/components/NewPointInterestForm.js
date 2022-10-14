@@ -39,8 +39,6 @@ function NewPointInterestForm({
       } else {
         res.json().then((error) => setError(error.errors));
       }
-
-      setShowNewPointInterestForm(false);
     });
 
     setName("");
@@ -97,6 +95,7 @@ function NewPointInterestForm({
           </label>
         </div>
         <button type="submit">Submit</button>
+        {error ? <div>{error}</div> : null}
       </form>
     </div>
   );

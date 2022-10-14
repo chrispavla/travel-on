@@ -2,9 +2,12 @@ import { useState, useContext } from "react";
 import { UserContext } from "../Context/UserProvider";
 
 function NewPointInterestForm({
+  places,
+  setPlaces,
   displayedLocation,
-  setNewPlace,
-  setShowNewPointInterestForm,
+  addNewPlace,
+  // setNewPlace,
+  // setShowNewPointInterestForm,
 }) {
   let [user, setUser] = useContext(UserContext);
   const [name, setName] = useState("");
@@ -34,7 +37,7 @@ function NewPointInterestForm({
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          setNewPlace(data);
+          addNewPlace(data);
         });
       } else {
         res.json().then((error) => setError(error.errors));

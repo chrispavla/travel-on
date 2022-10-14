@@ -7,20 +7,29 @@ import { UserContext } from "../Context/UserProvider";
 function LocationDetails() {
   let [user, setUser] = useContext(UserContext);
   let { id } = useParams();
-  const [newPlace, setNewPlace] = useState("");
   const [displayedLocation, setDisplayedLocation] = useState("");
   const [showNewPointInterestForm, setShowNewPointInterestForm] =
     useState(false);
+  const [places, setPlaces] = useState("");
 
   useEffect(() => {
     fetch(`/locations/${id}`).then((res) => {
       if (res.ok) {
         res.json().then((oneLocation) => {
           setDisplayedLocation(oneLocation);
+          setPlaces(oneLocation.point_of_interests);
         });
       }
     });
   }, [id]);
+
+  function deletePointOfInterest(deletedPoint) {
+    setPlaces(places.filter((place) => place.id !== deletedPoint.id));
+  }
+
+  function addNewPlace(data) {
+    setPlaces([...places, data]);
+  }
 
   function handleShowForm() {
     setShowNewPointInterestForm(
@@ -34,8 +43,10 @@ function LocationDetails() {
       <button onClick={handleShowForm}>Share</button>
       {showNewPointInterestForm ? (
         <NewPointInterestForm
+          addNewPlace={addNewPlace}
+          places={places}
+          setPlaces={setPlaces}
           displayedLocation={displayedLocation}
-          setNewPlace={setNewPlace}
           setShowNewPointInterestForm={setShowNewPointInterestForm}
         />
       ) : null}
@@ -45,19 +56,13 @@ function LocationDetails() {
         </h1>
       ) : null}
       {displayedLocation !== "" ? (
-        <PointOfInterestCard displayedLocation={displayedLocation} />
+        <PointOfInterestCard
+          places={places}
+          deletePointOfInterest={deletePointOfInterest}
+        />
       ) : (
         <p>Loading..</p>
       )}
-      {newPlace !== "" ? (
-        <div>
-          <img src={user.profile_image}></img>
-          <h4>{user.username}</h4>
-          <img src={newPlace.image}></img>
-          <h1>{newPlace.name}</h1>
-          <p>{newPlace.note}</p>
-        </div>
-      ) : null}
     </div>
   );
 }

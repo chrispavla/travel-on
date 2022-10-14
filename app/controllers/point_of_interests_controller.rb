@@ -4,6 +4,7 @@ class PointOfInterestsController < ApplicationController
   
   def index 
     render json: PointOfInterest.all, status: :ok
+    # PointOfInterest.where("location_id = '1'")
   end
   
   def create 

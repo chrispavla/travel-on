@@ -1,25 +1,31 @@
 import { UserContext } from "../Context/UserProvider";
 import { useEffect, useState, useContext } from "react";
 
-function PointOfInterestCard({ displayedLocation }) {
+function PointOfInterestCard({ places, deletePointOfInterest }) {
   let [user, setUser] = useContext(UserContext);
 
-  function handleDeletePointOfInterest() {
-    console.log("hey");
+  function handleDeletePointOfInterest(deletedPoint) {
+    fetch(`/point_of_interests/${deletedPoint.id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(deletePointOfInterest(deletedPoint));
   }
 
-  const pointdisplay = displayedLocation.point_of_interests.map((point) => (
+  const pointdisplay = places.map((point) => (
     <div style={{ border: "solid" }}>
       <img
         style={{ borderRadius: "50%", width: "4rem" }}
         src={point.user.profile_image}
       ></img>
-      <h4>{point.user.username}</h4>
+      {point.user.username ? <h4>{point.user.username}</h4> : null}
       <img src={point.image}></img>
       <h1>{point.name}</h1>
       <p>{point.note}</p>
       {point.user.username === user.username ? (
-        <button onClick={handleDeletePointOfInterest}>Delete a place</button>
+        <button onClick={() => handleDeletePointOfInterest(point)}>
+          Delete a place
+        </button>
       ) : null}
     </div>
   ));

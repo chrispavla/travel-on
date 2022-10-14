@@ -4,7 +4,7 @@ import LocationDetails from "./LocationDetails";
 
 function Home({ locations }) {
   const locationsToShow = locations.map((location) => (
-    <Link to={`/locations/${location.id}`}>
+    <Link key={location.id} to={`/locations/${location.id}`}>
       <h1>
         {location.city}, {location.country}
       </h1>

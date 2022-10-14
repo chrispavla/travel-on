@@ -11,6 +11,12 @@ class PointOfInterestsController < ApplicationController
     render json: pointOfInterest, status: :created
   end
 
+  def destroy
+    pointOfInterest = PointOfInterest.find(params[:id])
+    pointOfInterest.destroy
+    render json: {}, status: :ok
+  end
+
   private 
 
   def pointOfInterest_params

@@ -37,6 +37,10 @@ function LocationDetails() {
     );
   }
 
+  // function filterHotel() {
+  //   let showHotels = places.filter((place) => place.category === "Hotel");
+  // }
+
   return (
     <div>
       <p>Been here and have another cool place to share?</p>
@@ -50,6 +54,12 @@ function LocationDetails() {
           setShowNewPointInterestForm={setShowNewPointInterestForm}
         />
       ) : null}
+      <div>
+        <h4>Filter by:</h4>
+        <button onClick={filterHotel}>Hotel and Lodging</button>
+        <button>Food</button>
+        <button>Cultural Attraction</button>
+      </div>
       {displayedLocation !== "" ? (
         <h1>
           {displayedLocation.city}, {displayedLocation.country}
@@ -58,6 +68,7 @@ function LocationDetails() {
       {displayedLocation !== "" ? (
         <PointOfInterestCard
           places={places}
+          setPlaces={setPlaces}
           deletePointOfInterest={deletePointOfInterest}
         />
       ) : (

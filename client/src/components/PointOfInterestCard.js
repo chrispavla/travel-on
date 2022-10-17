@@ -1,8 +1,10 @@
 import { UserContext } from "../Context/UserProvider";
 import { useEffect, useState, useContext } from "react";
+import EditPointOfInterestForm from "./EditPointOfInterestForm";
 
-function PointOfInterestCard({ places, deletePointOfInterest }) {
+function PointOfInterestCard({ places, setPlaces, deletePointOfInterest }) {
   let [user, setUser] = useContext(UserContext);
+  const [isShown, setIsShown] = useState(false);
 
   function handleDeletePointOfInterest(deletedPoint) {
     fetch(`/point_of_interests/${deletedPoint.id}`, {
@@ -10,6 +12,21 @@ function PointOfInterestCard({ places, deletePointOfInterest }) {
     })
       .then((res) => res.json())
       .then(deletePointOfInterest(deletedPoint));
+  }
+
+  function handleEditPointOfInterest() {
+    setIsShown((isShown) => !isShown);
+  }
+
+  function editPlace(editedPlace) {
+    let newPlaces = places.map((place) => {
+      if (place.id === editedPlace.id) {
+        return editedPlace;
+      } else {
+        return place;
+      }
+    });
+    setPlaces(newPlaces);
   }
 
   const pointdisplay = places.map((point) => (
@@ -23,9 +40,19 @@ function PointOfInterestCard({ places, deletePointOfInterest }) {
       <h1>{point.name}</h1>
       <p>{point.note}</p>
       {point.user.username === user.username ? (
-        <button onClick={() => handleDeletePointOfInterest(point)}>
-          Delete a place
-        </button>
+        <div>
+          <button onClick={handleEditPointOfInterest}>Edit a place</button>
+          <button onClick={() => handleDeletePointOfInterest(point)}>
+            Delete a place
+          </button>
+          {isShown ? (
+            <EditPointOfInterestForm
+              point={point}
+              editPlace={editPlace}
+              setIsShown={setIsShown}
+            />
+          ) : null}
+        </div>
       ) : null}
     </div>
   ));

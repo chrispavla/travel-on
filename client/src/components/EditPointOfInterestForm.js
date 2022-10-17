@@ -1,51 +1,41 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../Context/UserProvider";
+import { useState } from "react";
 
-function NewPointInterestForm({ displayedLocation, addNewPlace }) {
-  let [user, setUser] = useContext(UserContext);
-  const [name, setName] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [note, setNote] = useState("");
-  const [category, setCategory] = useState("");
+function EditPointOfInterestForm({ point, editPlace, setIsShown }) {
+  const [name, setName] = useState(point.name);
+  const [photo, setPhoto] = useState(point.image);
+  const [note, setNote] = useState(point.note);
+  const [category, setCategory] = useState(point.category);
   const [error, setError] = useState();
 
-  function handleSubmitNewPointOfInterest(e) {
+  function handleSubmitEditPointOfInterest(e) {
     e.preventDefault();
 
-    let newPointOfInterest = {
-      name: name,
-      image: photo,
-      note: note,
-      category: category,
-      user_id: user.id,
-      location_id: displayedLocation.id,
-    };
-
-    fetch("/point_of_interests", {
-      method: "POST",
+    fetch(`/point_of_interests/${point.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newPointOfInterest),
+      body: JSON.stringify({
+        name: name,
+        image: photo,
+        note: note,
+        category: category,
+      }),
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          addNewPlace(data);
+          editPlace(data);
+          setIsShown(false);
         });
       } else {
         res.json().then((error) => setError(error.errors));
       }
     });
-
-    setName("");
-    setPhoto("");
-    setNote("");
-    setCategory("");
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmitNewPointOfInterest}>
+      <form onSubmit={handleSubmitEditPointOfInterest}>
         <div>
           <label>
             Name
@@ -97,4 +87,4 @@ function NewPointInterestForm({ displayedLocation, addNewPlace }) {
   );
 }
 
-export default NewPointInterestForm;
+export default EditPointOfInterestForm;

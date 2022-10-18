@@ -107,6 +107,8 @@ function LocationDetails() {
         filteredPlaces.map((place) => (
           <PointOfInterestCard
             place={place}
+            places={places}
+            setPlaces={setPlaces}
             editPlace={editPlace}
             deletePointOfInterest={deletePointOfInterest}
           />

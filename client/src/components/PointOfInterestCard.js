@@ -10,9 +10,30 @@ function PointOfInterestCard({ place, deletePointOfInterest, editPlace }) {
   const [showComments, setShowComments] = useState(false);
   const [displayedComments, setDisplayedComments] = useState([]);
   const [clickedCard, setClickedCard] = useState("");
+  // const [averageRating, setAverageRating] = useState(place.average_rating);
 
   function onSubmitComments(newComment) {
     setDisplayedComments([...displayedComments, newComment]);
+  }
+
+  function onDeleteComment(deletedComment) {
+    setDisplayedComments(
+      displayedComments.filter(
+        (displayedComment) => displayedComment.id !== deletedComment.id
+      )
+    );
+  }
+
+  function onUpdateComment(editedComment) {
+    let newComments = displayedComments.map((displayedComment) => {
+      if (displayedComment.id === editedComment.id) {
+        console.log(editedComment);
+        return editedComment;
+      } else {
+        return displayedComment;
+      }
+    });
+    setDisplayedComments(newComments);
   }
 
   function handleToggleComments(place) {
@@ -35,14 +56,6 @@ function PointOfInterestCard({ place, deletePointOfInterest, editPlace }) {
     setIsShown((isShown) => !isShown);
   }
 
-  function onDeleteComment(deletedComment) {
-    setDisplayedComments(
-      displayedComments.filter(
-        (displayedComment) => displayedComment.id !== deletedComment.id
-      )
-    );
-  }
-
   return (
     <div style={{ border: "solid" }}>
       <img
@@ -52,7 +65,9 @@ function PointOfInterestCard({ place, deletePointOfInterest, editPlace }) {
       {place.user.username ? <h4>{place.user.username}</h4> : null}
       <img src={place.image} style={{ width: "8rem" }}></img>
       <h1>{place.name}</h1>
-      <p>Average Rating: {"⭐️".repeat(place.average_rating)}</p>
+      {place.average_rating ? (
+        <p>Average Rating: {"⭐️".repeat(place.average_rating)}</p>
+      ) : null}
       <p>{place.note}</p>
       {place.user.username === user.username ? (
         <div>
@@ -79,6 +94,7 @@ function PointOfInterestCard({ place, deletePointOfInterest, editPlace }) {
           <CommentList
             displayedComments={displayedComments}
             onDeleteComment={onDeleteComment}
+            onUpdateComment={onUpdateComment}
           />
         </div>
       ) : null}

@@ -67,23 +67,6 @@ function LocationDetails() {
     });
   }
 
-  // let filteredPlaces;
-
-  // if (places !== "") {
-  //   filteredPlaces = places.filter((place) => {
-  //     switch (filter) {
-  //       case "Hotel":
-  //         return place.category === "Hotel";
-  //       case "Food":
-  //         return place.category === "Food";
-  //       case "Cultural attraction":
-  //         return place.category === "Cultural attraction";
-  //       default:
-  //         return place;
-  //     }
-  //   });
-  // }
-
   return (
     <div>
       <p>Been here and have another cool place to share?</p>

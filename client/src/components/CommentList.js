@@ -1,6 +1,6 @@
 import CommentCard from "./CommentCard";
 
-function CommentList({ displayedComments, onDeleteComment }) {
+function CommentList({ displayedComments, onDeleteComment, onUpdateComment }) {
   return (
     <div>
       {displayedComments
@@ -9,6 +9,7 @@ function CommentList({ displayedComments, onDeleteComment }) {
               key={comment.id}
               comment={comment}
               onDeleteComment={onDeleteComment}
+              onUpdateComment={onUpdateComment}
             />
           ))
         : "Loading.."}

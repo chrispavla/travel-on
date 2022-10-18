@@ -37,9 +37,9 @@ function CommentForm({ clickedCard, onSubmitComments }) {
       <form onSubmit={handleSubmitForm}>
         <label>Place rating</label>
         <input
-          min="0"
+          min="1"
           max="5"
-          step="0.5"
+          step="1"
           list="tickmarks"
           type="range"
           value={rating}

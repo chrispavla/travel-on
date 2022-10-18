@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments, only: [:index, :create, :destroy]
+  resources :comments, only: [:create, :update, :destroy]
   resources :locations
   resources :point_of_interests
   resources :users

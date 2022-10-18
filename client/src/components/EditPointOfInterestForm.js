@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-function EditPointOfInterestForm({ point, editPlace, setIsShown }) {
-  const [name, setName] = useState(point.name);
-  const [photo, setPhoto] = useState(point.image);
-  const [note, setNote] = useState(point.note);
-  const [category, setCategory] = useState(point.category);
+function EditPointOfInterestForm({ place, editPlace, setIsShown }) {
+  const [name, setName] = useState(place.name);
+  const [photo, setPhoto] = useState(place.image);
+  const [note, setNote] = useState(place.note);
+  const [category, setCategory] = useState(place.category);
   const [error, setError] = useState();
 
   function handleSubmitEditPointOfInterest(e) {
     e.preventDefault();
 
-    fetch(`/point_of_interests/${point.id}`, {
+    fetch(`/point_of_interests/${place.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

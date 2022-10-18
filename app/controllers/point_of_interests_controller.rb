@@ -5,6 +5,11 @@ class PointOfInterestsController < ApplicationController
   def index 
     render json: PointOfInterest.all, status: :ok
   end
+
+  def show 
+    pointOfInterest = PointOfInterest.find(params[:id])
+    render json: pointOfInterest, status: :ok
+  end
   
   def create 
     pointOfInterest = PointOfInterest.create!(pointOfInterest_params)

@@ -1,10 +1,27 @@
 import { UserContext } from "../Context/UserProvider";
 import { useEffect, useState, useContext } from "react";
 import EditPointOfInterestForm from "./EditPointOfInterestForm";
+import CommentList from "./CommentList";
+import CommentForm from "./CommentForm";
 
-function PointOfInterestCard({ places, setPlaces, deletePointOfInterest }) {
+function PointOfInterestCard({ place, deletePointOfInterest, editPlace }) {
   let [user, setUser] = useContext(UserContext);
   const [isShown, setIsShown] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [displayedComments, setDisplayedComments] = useState([]);
+  const [clickedCard, setClickedCard] = useState("");
+
+  function onSubmitComments(newComment) {
+    setDisplayedComments([...displayedComments, newComment]);
+  }
+
+  function handleToggleComments(place) {
+    setClickedCard(place);
+    setShowComments((showComments) => !showComments);
+    fetch(`/comments/${place.id}`)
+      .then((res) => res.json())
+      .then((data) => setDisplayedComments(data));
+  }
 
   function handleDeletePointOfInterest(deletedPoint) {
     fetch(`/point_of_interests/${deletedPoint.id}`, {
@@ -18,46 +35,55 @@ function PointOfInterestCard({ places, setPlaces, deletePointOfInterest }) {
     setIsShown((isShown) => !isShown);
   }
 
-  function editPlace(editedPlace) {
-    let newPlaces = places.map((place) => {
-      if (place.id === editedPlace.id) {
-        return editedPlace;
-      } else {
-        return place;
-      }
-    });
-    setPlaces(newPlaces);
+  function onDeleteComment(deletedComment) {
+    setDisplayedComments(
+      displayedComments.filter(
+        (displayedComment) => displayedComment.id !== deletedComment.id
+      )
+    );
   }
 
-  const pointdisplay = places.map((point) => (
+  return (
     <div style={{ border: "solid" }}>
       <img
         style={{ borderRadius: "50%", width: "4rem" }}
-        src={point.user.profile_image}
+        src={place.user.profile_image}
       ></img>
-      {point.user.username ? <h4>{point.user.username}</h4> : null}
-      <img src={point.image}></img>
-      <h1>{point.name}</h1>
-      <p>{point.note}</p>
-      {point.user.username === user.username ? (
+      {place.user.username ? <h4>{place.user.username}</h4> : null}
+      <img src={place.image} style={{ width: "8rem" }}></img>
+      <h1>{place.name}</h1>
+      <p>Average Rating: {"⭐️".repeat(place.average_rating)}</p>
+      <p>{place.note}</p>
+      {place.user.username === user.username ? (
         <div>
           <button onClick={handleEditPointOfInterest}>Edit a place</button>
-          <button onClick={() => handleDeletePointOfInterest(point)}>
+          <button onClick={() => handleDeletePointOfInterest(place)}>
             Delete a place
           </button>
           {isShown ? (
             <EditPointOfInterestForm
-              point={point}
+              place={place}
               editPlace={editPlace}
               setIsShown={setIsShown}
             />
           ) : null}
         </div>
       ) : null}
+      <button onClick={() => handleToggleComments(place)}>Show comments</button>
+      {showComments ? (
+        <div>
+          <CommentForm
+            clickedCard={clickedCard}
+            onSubmitComments={onSubmitComments}
+          />
+          <CommentList
+            displayedComments={displayedComments}
+            onDeleteComment={onDeleteComment}
+          />
+        </div>
+      ) : null}
     </div>
-  ));
-
-  return <div>{pointdisplay}</div>;
+  );
 }
 
 export default PointOfInterestCard;

@@ -1,16 +1,19 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import NewPointInterestForm from "./NewPointInterestForm";
 import PointOfInterestCard from "./PointOfInterestCard";
 import { UserContext } from "../Context/UserProvider";
 
 function LocationDetails() {
+  let history = useHistory();
   let [user, setUser] = useContext(UserContext);
   let { id } = useParams();
   const [displayedLocation, setDisplayedLocation] = useState("");
   const [showNewPointInterestForm, setShowNewPointInterestForm] =
     useState(false);
   const [places, setPlaces] = useState("");
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     fetch(`/locations/${id}`).then((res) => {
@@ -37,8 +40,48 @@ function LocationDetails() {
     );
   }
 
-  // function filterHotel() {
-  //   let showHotels = places.filter((place) => place.category === "Hotel");
+  function editPlace(editedPlace) {
+    let newPlaces = places.map((place) => {
+      if (place.id === editedPlace.id) {
+        return editedPlace;
+      } else {
+        return place;
+      }
+    });
+    setPlaces(newPlaces);
+  }
+
+  let filteredPlaces;
+
+  if (places !== "") {
+    filteredPlaces = places.filter((place) => {
+      if (filter === "Hotel") {
+        return place.category === "Hotel";
+      } else if (filter === "Food") {
+        return place.category === "Food";
+      } else if (filter === "Cultural attraction") {
+        return place.category === "Cultural attraction";
+      } else {
+        return true;
+      }
+    });
+  }
+
+  // let filteredPlaces;
+
+  // if (places !== "") {
+  //   filteredPlaces = places.filter((place) => {
+  //     switch (filter) {
+  //       case "Hotel":
+  //         return place.category === "Hotel";
+  //       case "Food":
+  //         return place.category === "Food";
+  //       case "Cultural attraction":
+  //         return place.category === "Cultural attraction";
+  //       default:
+  //         return place;
+  //     }
+  //   });
   // }
 
   return (
@@ -56,9 +99,21 @@ function LocationDetails() {
       ) : null}
       <div>
         <h4>Filter by:</h4>
-        <button onClick={filterHotel}>Hotel and Lodging</button>
-        <button>Food</button>
-        <button>Cultural Attraction</button>
+        <button onClick={() => setFilter("Hotel")} value={"Hotel"}>
+          Hotel and Lodging
+        </button>
+        <button onClick={() => setFilter("Food")} value={"Food"}>
+          Food
+        </button>
+        <button
+          onClick={() => setFilter("Cultural attraction")}
+          value={"Cultural attraction"}
+        >
+          Cultural Attraction
+        </button>
+        <button onClick={() => setFilter("All")} value={"All"}>
+          Show all places
+        </button>
       </div>
       {displayedLocation !== "" ? (
         <h1>
@@ -66,11 +121,13 @@ function LocationDetails() {
         </h1>
       ) : null}
       {displayedLocation !== "" ? (
-        <PointOfInterestCard
-          places={places}
-          setPlaces={setPlaces}
-          deletePointOfInterest={deletePointOfInterest}
-        />
+        filteredPlaces.map((place) => (
+          <PointOfInterestCard
+            place={place}
+            editPlace={editPlace}
+            deletePointOfInterest={deletePointOfInterest}
+          />
+        ))
       ) : (
         <p>Loading..</p>
       )}

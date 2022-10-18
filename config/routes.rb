@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments
+  resources :comments, only: [:index, :create, :destroy]
   resources :locations
   resources :point_of_interests
   resources :users
@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
+  # Custom route for showing comments attached to specific point of interest
+  get '/comments/:point_of_interest_id', to: 
+  'comments#specific_point_of_interest'
   # Defines the root path route ("/")
   # root "articles#index"
   get '*path',

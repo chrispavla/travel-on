@@ -4,23 +4,29 @@ import EditPointOfInterestForm from "./EditPointOfInterestForm";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 
-function PointOfInterestCard({ place, deletePointOfInterest, editPlace }) {
+function PointOfInterestCard({
+  place,
+  places,
+  deletePointOfInterest,
+  editPlace,
+  setPlaces,
+}) {
   let [user, setUser] = useContext(UserContext);
   const [isShown, setIsShown] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [displayedComments, setDisplayedComments] = useState([]);
   const [clickedCard, setClickedCard] = useState("");
-  // const [averageRating, setAverageRating] = useState(place.average_rating);
 
   function onSubmitComments(newComment) {
     setDisplayedComments([...displayedComments, newComment]);
-  }
-
-  function onDeleteComment(deletedComment) {
-    setDisplayedComments(
-      displayedComments.filter(
-        (displayedComment) => displayedComment.id !== deletedComment.id
-      )
+    setPlaces(
+      places.map((place) => {
+        if (place.id === newComment.point_of_interest.id) {
+          return newComment.point_of_interest;
+        } else {
+          return place;
+        }
+      })
     );
   }
 
@@ -34,6 +40,23 @@ function PointOfInterestCard({ place, deletePointOfInterest, editPlace }) {
       }
     });
     setDisplayedComments(newComments);
+    setPlaces(
+      places.map((place) => {
+        if (place.id === editedComment.point_of_interest.id) {
+          return editedComment.point_of_interest;
+        } else {
+          return place;
+        }
+      })
+    );
+  }
+
+  function onDeleteComment(deletedComment) {
+    setDisplayedComments(
+      displayedComments.filter(
+        (displayedComment) => displayedComment.id !== deletedComment.id
+      )
+    );
   }
 
   function handleToggleComments(place) {

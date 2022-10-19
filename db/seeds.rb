@@ -1,11 +1,12 @@
 puts 'Creating users...'
 
 user1 = User.create!(first_name: 'Kristina', last_name: 'Hodges', username: 'chrispavla', password: '12345', profile_image: 'https://avatars.githubusercontent.com/u/105557320?v=4')
+user2 = User.create!(first_name: 'Brooke', last_name: 'Jones', username: 'brookejones', password: '12345', profile_image: 'https://ca.slack-edge.com/T02MD9XTF-UK933ECJJ-6c26a3d655a5-512')
 
 puts 'Creating locations...'
 
-location1 = Location.create!(city: 'Paris', country: 'France')
-location2 = Location.create!(city: 'Berlin', country: 'Germany')
+location1 = Location.create!(city: 'Paris', country: 'France', latitude: '48.8566', longitude: '2.3522')
+location2 = Location.create!(city: 'Berlin', country: 'Germany', latitude: '52.5200', longitude: '13.4050')
 
 puts 'Creating point of interests...'
 

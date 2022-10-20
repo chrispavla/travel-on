@@ -6,6 +6,7 @@ import NavBar from "./components/Navbar";
 import { UserProvider } from "./Context/UserProvider";
 import Home from "./components/Home";
 import LocationDetails from "./components/LocationDetails";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home locations={locations} setLocations={setLocations} />
+          </Route>
+          <Route path="/me">
+            <UserProfile />
           </Route>
           <Route path="/locations/:id">
             <LocationDetails />

@@ -33,11 +33,15 @@ function NavBar() {
           <NavLink exact to="/">
             Home
           </NavLink>
+          <NavLink exact to="/me">
+            My profile
+          </NavLink>
           <NavLink onClick={handleLogout} exact to="/">
             Logout
           </NavLink>
         </div>
       )}
+      {user ? <p>Hi, {user.username}!</p> : null}
     </nav>
   );
 }

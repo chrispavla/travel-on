@@ -1,18 +1,15 @@
-import { useEffect, useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../Context/UserProvider";
-import LocationDetails from "./LocationDetails";
 import ReactMapGL, {
   FlyToInterpolator,
   Marker,
   Popup,
-  GeolocateControl,
   NavigationControl,
-  useControl,
 } from "react-map-gl";
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import marker from "./marker.png";
 import NewLocationForm from "./NewLocationForm";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 function Home({ locations, setLocations }) {
   let [user, setUser] = useContext(UserContext);
@@ -34,7 +31,7 @@ function Home({ locations, setLocations }) {
       height: "80vh",
       longitude: location.longitude,
       latitude: location.latitude,
-      zoom: 8,
+      zoom: 6,
       transitionDuration: "auto",
     };
 
@@ -57,13 +54,6 @@ function Home({ locations, setLocations }) {
   // });
   // }
 
-  // map.addControl(
-  //   new MapboxGeocoder({
-  //     accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
-  //     mapboxgl: mapboxgl,
-  //   })
-  // );
-
   return (
     <div>
       <h1>Welcome to Travel-On</h1>
@@ -76,7 +66,7 @@ function Home({ locations, setLocations }) {
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
-        transitionInterpolator={new FlyToInterpolator({ speed: 1.2 })}
+        transitionInterpolator={new FlyToInterpolator({ speed: 5 })}
       >
         {locations.map((location) => (
           <Marker
@@ -101,10 +91,7 @@ function Home({ locations, setLocations }) {
         </div>
         <div>
           <div style={{ padding: "5px" }}>
-            <GeolocateControl positionOptions={{ enableHighAccuracy: true }} />
-          </div>
-          <div style={{ padding: "5px" }}>
-            <NavigationControl />
+            <NavigationControl position="bottom-right" />
           </div>
         </div>
         {selectedPin ? (

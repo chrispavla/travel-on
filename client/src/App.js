@@ -22,7 +22,7 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/">
-            <Home locations={locations} />
+            <Home locations={locations} setLocations={setLocations} />
           </Route>
           <Route path="/locations/:id">
             <LocationDetails />

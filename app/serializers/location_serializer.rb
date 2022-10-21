@@ -1,5 +1,5 @@
 class LocationSerializer < ActiveModel::Serializer
-  attributes :id, :city, :country, :latitude, :longitude, :uniq_user
+  attributes :id, :city, :country, :latitude, :longitude, :uniq_user, :point_of_interests
   has_many :point_of_interests
  
 

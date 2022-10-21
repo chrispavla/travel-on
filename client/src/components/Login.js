@@ -34,7 +34,7 @@ function Login() {
         r.json().then((user) => setUser(user));
         history.push("/");
       } else {
-        r.json().then((json) => setError(json.error));
+        r.json().then((error) => setError(error.error));
       }
     });
   }
@@ -83,7 +83,7 @@ function Login() {
         </div>
         <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
       </form>
-      {error ? <div>{error}</div> : null}
+      {error ? error.map((err) => <div>{err}</div>) : null}
       <div>
         <p>Don't have an account?</p>
         <a href="/signup">Sign up</a>

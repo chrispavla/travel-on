@@ -42,18 +42,6 @@ function Home({ locations, setLocations }) {
     setLocations([...locations, newLocation]);
   }
 
-  // function geocoder() {
-  //   const ctrl = new MapboxGeocoder({
-  //     accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
-  //     marker: false,
-  //     collapsed: false,
-  //   });
-  // useControl(() => ctrl);
-  // ctrl.on("result", (e) => {
-  //   const coords = e.result.geometry.coordinates;
-  // });
-  // }
-
   return (
     <div>
       <h1>Welcome to Travel-On</h1>

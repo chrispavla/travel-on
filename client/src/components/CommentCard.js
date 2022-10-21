@@ -1,11 +1,12 @@
 import { UserContext } from "../Context/UserProvider";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 
 function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
   let [user, setUser] = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
   const [rating, setRating] = useState(comment.rating);
   const [newComment, setNewComment] = useState(comment.comment);
+  const [error, setError] = useState("");
 
   function handleDeleteComment(deletedComment) {
     fetch(`/comments/${comment.id}`, {
@@ -39,6 +40,8 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
           .json()
           .then((updatedComment) => onUpdateComment(updatedComment))
           .then(handleEditComment);
+      } else {
+        res.json().then((error) => setError(error.errors));
       }
     });
   }
@@ -51,9 +54,9 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
           <form onSubmit={handleUpdate}>
             <label>Place rating</label>
             <input
-              min="0"
+              min="1"
               max="5"
-              step="0.5"
+              step="1"
               list="tickmarks"
               type="range"
               value={rating}
@@ -90,6 +93,7 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
           </button>
         </div>
       ) : null}
+      {error ? error.map((err) => <div>{err}</div>) : null}
     </div>
   );
 }

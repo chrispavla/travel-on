@@ -6,7 +6,8 @@ import NavBar from "./components/Navbar";
 import { UserProvider } from "./Context/UserProvider";
 import Home from "./components/Home";
 import LocationDetails from "./components/LocationDetails";
-import UserProfile from "./components/UserProfile";
+import MyProfile from "./components/MyProfile.js";
+import UsersProfile from "./components/UsersProfile.js";
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -25,11 +26,14 @@ function App() {
           <Route exact path="/">
             <Home locations={locations} setLocations={setLocations} />
           </Route>
-          <Route path="/me">
-            <UserProfile />
+          <Route path="/profile">
+            <MyProfile />
           </Route>
           <Route path="/locations/:id">
             <LocationDetails />
+          </Route>
+          <Route path="/users/:id">
+            <UsersProfile />
           </Route>
           <Route path="/login">
             <Login />

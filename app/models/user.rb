@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :comments
 
   validates :username, presence: :true, uniqueness: :true
-  validates :password, presence: :true
+  validates :password, :profile_image, :first_name, :last_name, presence: :true
 
   has_secure_password
 end

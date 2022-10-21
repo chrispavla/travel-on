@@ -1,13 +1,11 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../Context/UserProvider";
+import { useState } from "react";
 
 function NewLocationForm({ onSubmitNewLocation }) {
-  let [user, setUser] = useContext(UserContext);
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
   function handleNewLocationSubmit(e) {
     e.preventDefault();
@@ -73,7 +71,7 @@ function NewLocationForm({ onSubmitNewLocation }) {
           onChange={(e) => setLongitude(e.target.value)}
         ></input>
         <button type="submit">Add new location</button>
-        {error ? <div>{error}</div> : null}
+        {error ? error.map((err) => <div>{err}</div>) : null}
       </form>
     </div>
   );

@@ -81,7 +81,7 @@ function EditPointOfInterestForm({ place, editPlace, setIsShown }) {
           </label>
         </div>
         <button type="submit">Submit</button>
-        {error ? <div>{error}</div> : null}
+        {error ? error.map((err) => <div>{err}</div>) : null}
       </form>
     </div>
   );

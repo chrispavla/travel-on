@@ -33,7 +33,7 @@ function NavBar() {
           <NavLink exact to="/">
             Home
           </NavLink>
-          <NavLink exact to="/me">
+          <NavLink exact to="/profile">
             My profile
           </NavLink>
           <NavLink onClick={handleLogout} exact to="/">
@@ -41,7 +41,16 @@ function NavBar() {
           </NavLink>
         </div>
       )}
-      {user ? <p>Hi, {user.username}!</p> : null}
+      {user ? (
+        <div>
+          <p>Signed in as: </p>
+          <img
+            src={user.profile_image}
+            style={{ borderRadius: "50%", width: "3rem" }}
+          ></img>
+          <p>{user.username}</p>
+        </div>
+      ) : null}
     </nav>
   );
 }

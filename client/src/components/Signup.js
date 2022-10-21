@@ -39,7 +39,7 @@ function Signup() {
         r.json().then((user) => setUser(user));
         history.push("/");
       } else {
-        r.json().then((data) => setError(Object.values(data).join()));
+        r.json().then((error) => setError(error.errors));
       }
     });
   }
@@ -123,7 +123,7 @@ function Signup() {
         </div>
         <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
       </form>
-      {error ? <div>{error}</div> : null}
+      {error ? error.map((err) => <div>{err}</div>) : null}
       <div>
         <p>Already registered?</p>
         <a href="/login">Log in</a>

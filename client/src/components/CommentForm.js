@@ -5,6 +5,7 @@ function CommentForm({ clickedCard, onSubmitComments }) {
   let [user, setUser] = useContext(UserContext);
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
+  const [error, setError] = useState("");
 
   function handleSubmitForm(e) {
     e.preventDefault();
@@ -25,6 +26,8 @@ function CommentForm({ clickedCard, onSubmitComments }) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((comment) => onSubmitComments(comment));
+      } else {
+        res.json().then((error) => setError(error.errors));
       }
     });
     setComment("");
@@ -52,6 +55,7 @@ function CommentForm({ clickedCard, onSubmitComments }) {
           onChange={(e) => setComment(e.target.value)}
         ></input>
         <button type="submit">Submit comment</button>
+        {error ? error.map((err) => <div>{err}</div>) : null}
       </form>
     </div>
   );

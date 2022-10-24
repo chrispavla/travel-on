@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   skip_before_action :authorize, only: :create
-  skip_before_action :authorize, only: :show
+  # skip_before_action :authorize, only: :show
   
   def show 
     if(params[:id]) 
@@ -12,9 +12,8 @@ class UsersController < ApplicationController
      else 
       render json: @current_user
      end
-    
   end
-  
+
   def create 
     user = User.create!(user_params)
     session[:user_id] = user.id

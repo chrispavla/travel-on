@@ -81,13 +81,24 @@ function PointOfInterestCard({
 
   return (
     <div style={{ border: "solid" }}>
-      <Link to={`/users/${place.user.id}`}>
-        <img
-          style={{ borderRadius: "50%", width: "4rem" }}
-          src={place.user.profile_image}
-        ></img>
-        {place.user.username ? <h4>{place.user.username}</h4> : null}
-      </Link>
+      {user ? (
+        <Link to={`/users/${place.user.id}`}>
+          <img
+            style={{ borderRadius: "50%", width: "4rem" }}
+            src={place.user.profile_image}
+          ></img>
+          {place.user.username ? <h4>{place.user.username}</h4> : null}
+        </Link>
+      ) : (
+        <div>
+          <img
+            style={{ borderRadius: "50%", width: "4rem" }}
+            src={place.user.profile_image}
+          ></img>
+          {place.user.username ? <h4>{place.user.username}</h4> : null}
+        </div>
+      )}
+
       <img src={place.image} style={{ width: "8rem" }}></img>
       <h1>{place.name}</h1>
       {place.average_rating ? (

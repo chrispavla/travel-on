@@ -149,6 +149,11 @@ function MyProfile() {
             <p>Your activity:</p>
             {user.comments.map((comment) => (
               <div>
+                {comment.created_at === comment.updated_at ? (
+                  <p>left at: {comment.created_at}</p>
+                ) : (
+                  <p>updated at: {comment.updated_at}</p>
+                )}
                 <img
                   style={{ borderRadius: "50%", width: "3rem" }}
                   src={comment.user.profile_image}

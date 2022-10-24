@@ -7,7 +7,7 @@ import ReactMapGL, {
   Popup,
   NavigationControl,
 } from "react-map-gl";
-import marker from "./marker.png";
+import marker from "../assets/marker.png";
 import NewLocationForm from "./NewLocationForm";
 import "mapbox-gl/dist/mapbox-gl.css";
 

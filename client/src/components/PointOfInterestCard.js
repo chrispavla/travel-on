@@ -34,7 +34,6 @@ function PointOfInterestCard({
   function onUpdateComment(editedComment) {
     let newComments = displayedComments.map((displayedComment) => {
       if (displayedComment.id === editedComment.id) {
-        console.log(editedComment);
         return editedComment;
       } else {
         return displayedComment;

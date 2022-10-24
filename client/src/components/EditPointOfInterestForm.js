@@ -5,7 +5,7 @@ function EditPointOfInterestForm({ place, editPlace, setIsShown }) {
   const [photo, setPhoto] = useState(place.image);
   const [note, setNote] = useState(place.note);
   const [category, setCategory] = useState(place.category);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
   function handleSubmitEditPointOfInterest(e) {
     e.preventDefault();

@@ -83,7 +83,7 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
           </p>
         </div>
       )}
-      {user.username === comment.user.username && !isEditing ? (
+      {user && user.username === comment.user.username && !isEditing ? (
         <div>
           <button onClick={() => handleEditComment(comment)}>
             Edit comment

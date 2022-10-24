@@ -13,6 +13,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 function Home({ locations, setLocations }) {
   let [user, setUser] = useContext(UserContext);
+  const [isAddingNewForm, setIsAddingNewForm] = useState(false);
 
   const [viewport, setViewport] = useState({
     latitude: 41.9028,
@@ -42,11 +43,25 @@ function Home({ locations, setLocations }) {
     setLocations([...locations, newLocation]);
   }
 
+  function handleToggleNewForm() {
+    setIsAddingNewForm(!isAddingNewForm);
+  }
+
   return (
     <div>
       <h1>Welcome to Travel-On</h1>
       <p>Map a place you visited</p>
-      <NewLocationForm onSubmitNewLocation={onSubmitNewLocation} />
+      {user ? (
+        <button onClick={handleToggleNewForm}>Add a new location</button>
+      ) : (
+        <div>
+          <p>Want to add a new location?</p>
+          <a href="/login">Log in</a>
+        </div>
+      )}
+      {isAddingNewForm ? (
+        <NewLocationForm onSubmitNewLocation={onSubmitNewLocation} />
+      ) : null}
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

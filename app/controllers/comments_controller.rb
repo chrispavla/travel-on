@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   wrap_parameters format: []
 
+  skip_before_action :authorize, only: :specific_point_of_interest
+
   def specific_point_of_interest 
     render json: Comment.where(point_of_interest_id: params[:point_of_interest_id]), status: :ok
   end

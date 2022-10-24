@@ -70,7 +70,12 @@ function LocationDetails() {
   return (
     <div>
       <p>Been here and have another cool place to share?</p>
-      <button onClick={handleShowForm}>Share</button>
+      {user ? (
+        <button onClick={handleShowForm}>Share</button>
+      ) : (
+        <a href="/login">Log in</a>
+      )}
+
       {showNewPointInterestForm ? (
         <NewPointInterestForm
           addNewPlace={addNewPlace}

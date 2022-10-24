@@ -41,7 +41,7 @@ function UsersProfile() {
           </div>
           <div>
             <p>{userProfile.first_name}'s activity:</p>
-            {userProfile.comments === [] ? (
+            {userProfile.comments.length > 0 ? (
               userProfile.comments.map((comment) => (
                 <div>
                   <img
@@ -55,7 +55,9 @@ function UsersProfile() {
                 </div>
               ))
             ) : (
-              <p>No activity yet</p>
+              <div>
+                <p>No activity yet</p>
+              </div>
             )}
           </div>
         </div>

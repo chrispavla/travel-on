@@ -36,27 +36,36 @@ function CommentForm({ clickedCard, onSubmitComments }) {
 
   return (
     <div>
-      <h4>Leave your comment</h4>
-      <form onSubmit={handleSubmitForm}>
-        <label>Place rating</label>
-        <input
-          min="1"
-          max="5"
-          step="1"
-          list="tickmarks"
-          type="range"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-        ></input>
-        <label>Your comment</label>
-        <input
-          type="text"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        ></input>
-        <button type="submit">Submit comment</button>
-        {error ? error.map((err) => <div>{err}</div>) : null}
-      </form>
+      {user ? (
+        <div>
+          <h4>Leave your comment</h4>
+          <form onSubmit={handleSubmitForm}>
+            <label>Place rating</label>
+            <input
+              min="1"
+              max="5"
+              step="1"
+              list="tickmarks"
+              type="range"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+            ></input>
+            <label>Your comment</label>
+            <input
+              type="text"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></input>
+            <button type="submit">Submit comment</button>
+            {error ? error.map((err) => <div>{err}</div>) : null}
+          </form>
+        </div>
+      ) : (
+        <div>
+          <h4>Want to leave a comment?</h4>
+          <a href="/login">Log in</a>
+        </div>
+      )}
     </div>
   );
 }

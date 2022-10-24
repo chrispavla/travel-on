@@ -95,7 +95,7 @@ function PointOfInterestCard({
         <p>Average Rating: {"⭐️".repeat(place.average_rating)}</p>
       ) : null}
       <p>{place.note}</p>
-      {place.user.username === user.username ? (
+      {user && place.user.username === user.username ? (
         <div>
           <button onClick={handleEditPointOfInterest}>Edit a place</button>
           <button onClick={() => handleDeletePointOfInterest(place)}>

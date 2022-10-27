@@ -1,4 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {
+  Modal,
+  Button,
+  Header,
+  Form,
+  Icon,
+  Container,
+  Grid,
+} from "semantic-ui-react";
+import { UserContext } from "../Context/UserProvider";
 
 function NewLocationForm({ onSubmitNewLocation }) {
   const [city, setCity] = useState("");
@@ -6,6 +16,8 @@ function NewLocationForm({ onSubmitNewLocation }) {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+  let [user, setUser] = useContext(UserContext);
 
   function handleNewLocationSubmit(e) {
     e.preventDefault();
@@ -40,40 +52,86 @@ function NewLocationForm({ onSubmitNewLocation }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleNewLocationSubmit}>
-        <label>City</label>
-        <input
-          type="text"
-          placeholder="Rome"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        ></input>
-        <label>Country</label>
-        <input
-          type="text"
-          placeholder="Italy"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        ></input>
-        <label>Latitude</label>
-        <input
-          type="text"
-          placeholder="41.9028"
-          value={latitude}
-          onChange={(e) => setLatitude(e.target.value)}
-        ></input>
-        <label>Longitude</label>
-        <input
-          type="text"
-          placeholder="12.4964"
-          value={longitude}
-          onChange={(e) => setLongitude(e.target.value)}
-        ></input>
-        <button type="submit">Add new location</button>
-        {error ? error.map((err) => <div>{err}</div>) : null}
-      </form>
-    </div>
+    <Modal
+      closeIcon
+      size="small"
+      open={open}
+      trigger={
+        <Grid>
+          <Grid.Column textAlign="center">
+            {user ? (
+              <Button
+                id="btn"
+                style={{ textAlign: "center", marginTop: "30px" }}
+              >
+                Add a new location
+              </Button>
+            ) : (
+              <div style={{ textAlign: "center", marginTop: "30px" }}>
+                <p>Want to add a new location?</p>
+                <a href="/login">Log in</a>
+              </div>
+            )}
+          </Grid.Column>
+        </Grid>
+      }
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+    >
+      <Header
+        icon="map"
+        content="Add new location"
+        style={{ backgroundColor: "#6877f3", color: "#ffff" }}
+      />
+      <Modal.Content>
+        <Form onSubmit={handleNewLocationSubmit}>
+          <Form.Group widths="equal">
+            <Form.Field>
+              <label>City</label>
+              <input
+                type="text"
+                placeholder="Rome"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              ></input>
+            </Form.Field>
+            <Form.Field>
+              <label>Country</label>
+              <input
+                type="text"
+                placeholder="Italy"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              ></input>
+            </Form.Field>
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Field>
+              <label>Latitude</label>
+              <input
+                type="text"
+                placeholder="41.9028"
+                value={latitude}
+                onChange={(e) => setLatitude(e.target.value)}
+              ></input>
+            </Form.Field>
+            <Form.Field>
+              <label>Longitude</label>
+              <input
+                type="text"
+                placeholder="12.4964"
+                value={longitude}
+                onChange={(e) => setLongitude(e.target.value)}
+              ></input>
+            </Form.Field>
+          </Form.Group>
+          <Button type="Submit" style={{ backgroundColor: "#98eb6b" }}>
+            <Icon name="checkmark" /> Submit
+          </Button>
+          {error ? error.map((err) => <div>{err}</div>) : null}
+        </Form>
+      </Modal.Content>
+    </Modal>
   );
 }
 

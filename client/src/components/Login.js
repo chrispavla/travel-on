@@ -1,6 +1,24 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../Context/UserProvider";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Icon } from "semantic-ui-react";
 
 function Login() {
   let [user, setUser] = useContext(UserContext);
@@ -8,6 +26,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
   let history = useHistory();
@@ -39,56 +58,117 @@ function Login() {
     });
   }
 
-  function handleShowPassword() {
-    let x = document.getElementById("myInput");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  }
-
   return (
-    <div>
-      <h3>Login</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Username
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            ></input>
-          </label>
-        </div>
-        <div>
-          <label>
-            Password
-            <input
-              id="myInput"
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-          </label>
-        </div>
-        <div>
-          <div>
-            <input type="checkbox" onClick={handleShowPassword} />
-            <label>Show Password</label>
-          </div>
-        </div>
-        <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
-      </form>
-      {error ? error.map((err) => <div>{err}</div>) : null}
-      <div>
-        <p>Don't have an account?</p>
-        <a href="/signup">Sign up</a>
-      </div>
-    </div>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Log in
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            placeholder="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            id="outlined-adornment-password"
+            margin="normal"
+            required
+            fullWidth
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword(!showPassword)}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            placeholder="Password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            {isLoading ? <Icon loading name="spinner" /> : "Login"}
+          </Button>
+          {error ? error.map((err) => <div>{err}</div>) : null}
+          <Grid container>
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
+
+    // <div>
+    //   <h3>Login</h3>
+    //   <form onSubmit={handleSubmit}>
+    //     <div>
+    //       <label>
+    //         Username
+    //         <input
+    //           type="text"
+    //           name="username"
+    //           value={username}
+    //           onChange={(e) => setUsername(e.target.value)}
+    //         ></input>
+    //       </label>
+    //     </div>
+    //     <div>
+    //       <label>
+    //         Password
+    //         <input
+    //           type={showPassword ? "text" : "password"}
+    //           name="password"
+    //           value={password}
+    //           onChange={(e) => setPassword(e.target.value)}
+    //         ></input>
+    //       </label>
+    //     </div>
+    //     <div>
+    //       <div>
+    //         <p onClick={() => setShowPassword(!showPassword)}>Show password</p>
+    //       </div>
+    //     </div>
+    //     <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+    //   </form>
+    //   {error ? error.map((err) => <div>{err}</div>) : null}
+    //   <div>
+    //     <p>Don't have an account?</p>
+    //     <a href="/signup">Sign up</a>
+    //   </div>
+    // </div>
   );
 }
 

@@ -1,7 +1,10 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../Context/UserProvider";
+// import { Rating } from "semantic-ui-react";
+import Rating from "@mui/material/Rating";
+import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
 
-function CommentForm({ clickedCard, onSubmitComments }) {
+function CommentForm({ clickedCard, onSubmitComments, setShowAddCommentForm }) {
   let [user, setUser] = useContext(UserContext);
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
@@ -25,7 +28,10 @@ function CommentForm({ clickedCard, onSubmitComments }) {
       body: JSON.stringify(newComment),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((comment) => onSubmitComments(comment));
+        res.json().then((comment) => {
+          onSubmitComments(comment);
+          setShowAddCommentForm(false);
+        });
       } else {
         res.json().then((error) => setError(error.errors));
       }
@@ -38,27 +44,33 @@ function CommentForm({ clickedCard, onSubmitComments }) {
     <div>
       {user ? (
         <div>
-          <h4>Leave your comment</h4>
-          <form onSubmit={handleSubmitForm}>
-            <label>Place rating</label>
-            <input
-              min="1"
-              max="5"
-              step="1"
-              list="tickmarks"
-              type="range"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-            ></input>
-            <label>Your comment</label>
-            <input
-              type="text"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            ></input>
-            <button type="submit">Submit comment</button>
+          <Form onSubmit={handleSubmitForm}>
+            <Form.Field>
+              <label>Place rating</label>
+              <Rating
+                step="1"
+                type="range"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+              ></Rating>
+            </Form.Field>
+            <Form.Field>
+              <label>Your comment</label>
+              <input
+                type="text"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              ></input>
+            </Form.Field>
+            <Button
+              size="tiny"
+              type="Submit"
+              style={{ backgroundColor: "#98eb6b" }}
+            >
+              <Icon name="checkmark" /> Submit
+            </Button>
             {error ? error.map((err) => <div>{err}</div>) : null}
-          </form>
+          </Form>
         </div>
       ) : (
         <div>

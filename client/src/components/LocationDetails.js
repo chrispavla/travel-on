@@ -4,6 +4,10 @@ import { useHistory } from "react-router-dom";
 import NewPointInterestForm from "./NewPointInterestForm";
 import PointOfInterestCard from "./PointOfInterestCard";
 import { UserContext } from "../Context/UserProvider";
+import { Grid, Card, Container, Icon, Header, Modal } from "semantic-ui-react";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 
 function LocationDetails() {
   let history = useHistory();
@@ -68,15 +72,51 @@ function LocationDetails() {
   }
 
   return (
-    <div>
-      <p>Been here and have another cool place to share?</p>
-      {user ? (
-        <button onClick={handleShowForm}>Share</button>
-      ) : (
-        <a href="/login">Log in</a>
-      )}
+    <Container>
+      <Container textAlign="center">
+        {displayedLocation !== "" ? (
+          <h1 style={{ marginTop: "20px" }}>
+            <Icon color="red" name="map pin" /> {displayedLocation.city},{" "}
+            {displayedLocation.country}
+          </h1>
+        ) : null}
+        <Stack
+          divider={<Divider orientation="vertical" flexItem />}
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          marginTop="30px"
+        >
+          <Button
+            onClick={() => setFilter("Hotel")}
+            value={"Hotel"}
+            variant="contained"
+          >
+            Hotel and Lodging
+          </Button>
+          <Button
+            onClick={() => setFilter("Food")}
+            value={"Food"}
+            variant="contained"
+          >
+            Food
+          </Button>
+          <Button
+            onClick={() => setFilter("Cultural attraction")}
+            value={"Cultural attraction"}
+            variant="contained"
+          >
+            Cultural Attraction
+          </Button>
+          <Button
+            onClick={() => setFilter("All")}
+            value={"All"}
+            variant="contained"
+          >
+            Show all
+          </Button>
+        </Stack>
 
-      {showNewPointInterestForm ? (
         <NewPointInterestForm
           addNewPlace={addNewPlace}
           places={places}
@@ -84,44 +124,23 @@ function LocationDetails() {
           displayedLocation={displayedLocation}
           setShowNewPointInterestForm={setShowNewPointInterestForm}
         />
-      ) : null}
-      <div>
-        <h4>Filter by:</h4>
-        <button onClick={() => setFilter("Hotel")} value={"Hotel"}>
-          Hotel and Lodging
-        </button>
-        <button onClick={() => setFilter("Food")} value={"Food"}>
-          Food
-        </button>
-        <button
-          onClick={() => setFilter("Cultural attraction")}
-          value={"Cultural attraction"}
-        >
-          Cultural Attraction
-        </button>
-        <button onClick={() => setFilter("All")} value={"All"}>
-          Show all places
-        </button>
-      </div>
-      {displayedLocation !== "" ? (
-        <h1>
-          {displayedLocation.city}, {displayedLocation.country}
-        </h1>
-      ) : null}
-      {displayedLocation !== "" ? (
-        filteredPlaces.map((place) => (
-          <PointOfInterestCard
-            place={place}
-            places={places}
-            setPlaces={setPlaces}
-            editPlace={editPlace}
-            deletePointOfInterest={deletePointOfInterest}
-          />
-        ))
-      ) : (
-        <p>Loading..</p>
-      )}
-    </div>
+      </Container>
+      <Grid columns={4} padded>
+        {displayedLocation !== "" ? (
+          filteredPlaces.map((place) => (
+            <PointOfInterestCard
+              place={place}
+              places={places}
+              setPlaces={setPlaces}
+              editPlace={editPlace}
+              deletePointOfInterest={deletePointOfInterest}
+            />
+          ))
+        ) : (
+          <p>Loading..</p>
+        )}
+      </Grid>
+    </Container>
   );
 }
 

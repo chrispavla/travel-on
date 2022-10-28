@@ -30,7 +30,7 @@ function EditPointOfInterestForm({ place, editPlace, setIsShown }) {
       if (res.ok) {
         res.json().then((data) => {
           editPlace(data);
-          setIsShown(false);
+          setOpen(false);
         });
       } else {
         res.json().then((error) => setError(error.errors));
@@ -106,7 +106,14 @@ function EditPointOfInterestForm({ place, editPlace, setIsShown }) {
           <Button type="Submit" style={{ backgroundColor: "#98eb6b" }}>
             <Icon name="checkmark" /> Submit
           </Button>
-          {error ? error.map((err) => <div>{err}</div>) : null}
+          {error
+            ? error.map((err) => (
+                <div className="errors">
+                  <Icon name="warning circle"></Icon>
+                  {err}
+                </div>
+              ))
+            : null}
         </Form>
       </Modal.Content>
     </Modal>

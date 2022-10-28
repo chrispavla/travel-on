@@ -1,19 +1,6 @@
 // import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Divider,
-  Icon,
-  List,
-  Button,
-  Header,
-  Grid,
-} from "semantic-ui-react";
-// import Button from "@mui/material/Button";
-// import Box from "@mui/material/Box";
-// import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-// import PinDropIcon from "@mui/icons-material/PinDrop";
-// import ShareIcon from "@mui/icons-material/Share";
+import { Container, Icon, List, Button } from "semantic-ui-react";
 
 function Home() {
   return (
@@ -77,54 +64,6 @@ function Home() {
         </Container>
       </div>
     </div>
-    // <Container maxWidth="md">
-    //   <Box
-    //     sx={{
-    //       bgcolor: "#cfe8fc",
-    //       padding: "20px",
-    //       height: "100vh",
-    //       display: "flex",
-    //       flexDirection: "column",
-    //       justifyContent: "center",
-    //     }}
-    //   >
-    //     <h1 className="welcomeHeader">Welcome to Travel-On</h1>
-    //     <p className="pHome">
-    //       Travel-On brings together a community of people who love to travel.
-    //       Get inspiration for your trips and share your travel experiences.
-    //     </p>
-    //     <ul>
-    //       <li>
-    //         {" "}
-    //         <PinDropIcon />
-    //         Map locations of your travels
-    //       </li>
-    //       <li>
-    //         <TravelExploreIcon />
-    //         Discover new places through personal recommendations, interesting
-    //         facts and local tips.
-    //       </li>
-    //       <li>
-    //         {" "}
-    //         <ShareIcon /> Share the best places around the world
-    //       </li>
-    //     </ul>
-    //     <h4 className="welcomePage">
-    //       Share the places you love, <br></br>learn more about your favorite
-    //       places and the places you’ve always wanted to visit
-    //     </h4>
-    //     <Box m={1} display="flex" justifyContent="center" alignItems="center">
-    //       <Button
-    //         component={Link}
-    //         to="/map"
-    //         variant="contained"
-    //         color="secondary"
-    //       >
-    //         Start Mapping
-    //       </Button>
-    //     </Box>
-    //   </Box>
-    // </Container>
   );
 }
 

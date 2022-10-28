@@ -65,6 +65,19 @@ nav a:active {
   background-color: #6876f3e0;
 }
 
+.ui.secondary.pointing.menu {
+  background-color: #6877f3;
+}
+
+.ui.secondary.pointing.menu .active.item {
+  border-color: #ffff !important;
+  color: #ffff !important;
+}
+
+.ui.menu .item {
+  color: #ffff !important;
+}
+
 .errors {
   color: rgb(192, 4, 4);
 }

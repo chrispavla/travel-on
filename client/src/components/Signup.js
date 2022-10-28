@@ -16,6 +16,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
+import { Icon } from "semantic-ui-react";
 
 function Signup() {
   let [user, setUser] = useContext(UserContext);
@@ -162,7 +163,14 @@ function Signup() {
             >
               {isLoading ? "Loading..." : "Sign up"}
             </Button>
-            {error ? error.map((err) => <div>{err}</div>) : null}
+            {error
+              ? error.map((err) => (
+                  <div className="errors">
+                    <Icon name="warning circle"></Icon>
+                    {err}
+                  </div>
+                ))
+              : null}
             <Grid container>
               <Grid item>
                 <Link href="/login" variant="body2" sx={{ ml: 2 }}>

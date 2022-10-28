@@ -119,7 +119,14 @@ function Login() {
           >
             {isLoading ? <Icon loading name="spinner" /> : "Login"}
           </Button>
-          {error ? error.map((err) => <div>{err}</div>) : null}
+          {error
+            ? error.map((err) => (
+                <div className="errors">
+                  <Icon name="warning circle"></Icon>
+                  {err}
+                </div>
+              ))
+            : null}
           <Grid container>
             <Grid item>
               <Link href="/signup" variant="body2">

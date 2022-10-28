@@ -69,7 +69,14 @@ function CommentForm({ clickedCard, onSubmitComments, setShowAddCommentForm }) {
             >
               <Icon name="checkmark" /> Submit
             </Button>
-            {error ? error.map((err) => <div>{err}</div>) : null}
+            {error
+              ? error.map((err) => (
+                  <div className="errors">
+                    <Icon name="warning circle"></Icon>
+                    {err}
+                  </div>
+                ))
+              : null}
           </Form>
         </div>
       ) : (

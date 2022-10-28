@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   skip_before_action :authorize, only: :create
-  # skip_before_action :authorize, only: :show
   
   def show 
     if(params[:id]) 

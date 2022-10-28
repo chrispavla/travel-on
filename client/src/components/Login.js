@@ -12,10 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Icon } from "semantic-ui-react";
@@ -137,45 +134,6 @@ function Login() {
         </Box>
       </Box>
     </Container>
-
-    // <div>
-    //   <h3>Login</h3>
-    //   <form onSubmit={handleSubmit}>
-    //     <div>
-    //       <label>
-    //         Username
-    //         <input
-    //           type="text"
-    //           name="username"
-    //           value={username}
-    //           onChange={(e) => setUsername(e.target.value)}
-    //         ></input>
-    //       </label>
-    //     </div>
-    //     <div>
-    //       <label>
-    //         Password
-    //         <input
-    //           type={showPassword ? "text" : "password"}
-    //           name="password"
-    //           value={password}
-    //           onChange={(e) => setPassword(e.target.value)}
-    //         ></input>
-    //       </label>
-    //     </div>
-    //     <div>
-    //       <div>
-    //         <p onClick={() => setShowPassword(!showPassword)}>Show password</p>
-    //       </div>
-    //     </div>
-    //     <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
-    //   </form>
-    //   {error ? error.map((err) => <div>{err}</div>) : null}
-    //   <div>
-    //     <p>Don't have an account?</p>
-    //     <a href="/signup">Sign up</a>
-    //   </div>
-    // </div>
   );
 }
 

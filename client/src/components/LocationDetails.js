@@ -1,27 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import NewPointInterestForm from "./NewPointInterestForm";
 import PointOfInterestCard from "./PointOfInterestCard";
 import { UserContext } from "../Context/UserProvider";
-import {
-  Grid,
-  Card,
-  Container,
-  Icon,
-  Header,
-  Modal,
-  Dimmer,
-  Loader,
-  Segment,
-  Image,
-} from "semantic-ui-react";
+import { Grid, Container, Icon, Loader } from "semantic-ui-react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 
 function LocationDetails() {
-  let history = useHistory();
   let [user, setUser] = useContext(UserContext);
   let { id } = useParams();
   const [displayedLocation, setDisplayedLocation] = useState("");

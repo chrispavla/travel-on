@@ -5,7 +5,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -182,81 +181,6 @@ function Signup() {
         </Box>
       </Box>
     </Container>
-    // <div>
-    //   <h3>Signup</h3>
-    //   <form onSubmit={handleSubmit}>
-    //     <div>
-    //       <div>
-    //         <label>
-    //           First name
-    //           <input
-    //             type="text"
-    //             name="firstname"
-    //             value={firstName}
-    //             onChange={(e) => setFirstName(e.target.value)}
-    //           ></input>
-    //         </label>
-    //       </div>
-    //       <label>
-    //         Last name
-    //         <input
-    //           type="text"
-    //           name="lastname"
-    //           value={lastName}
-    //           onChange={(e) => setLastName(e.target.value)}
-    //         ></input>
-    //       </label>
-    //       <div>
-    //         <label>
-    //           Profile Image
-    //           <input
-    //             type="text"
-    //             name="profileimage"
-    //             value={profileImage}
-    //             onChange={(e) => setProfileImage(e.target.value)}
-    //           ></input>
-    //         </label>
-    //       </div>
-    //       <div>
-    //         <label>
-    //           Username
-    //           <input
-    //             type="text"
-    //             name="username"
-    //             value={username}
-    //             onChange={(e) => setUsername(e.target.value)}
-    //           ></input>
-    //         </label>
-    //       </div>
-    //     </div>
-    //     <div>
-    //       <label>
-    //         Password
-    //         <input
-    //           id="myInput"
-    //           type="password"
-    //           name="password"
-    //           value={password}
-    //           onChange={(e) => setPassword(e.target.value)}
-    //         ></input>
-    //       </label>
-    //     </div>
-    //     <div>
-    //       <div>
-    //         <div>
-    //           <input type="checkbox" onClick={handleShowPassword} />
-    //           <label>Show Password</label>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
-    //   </form>
-    //   {error ? error.map((err) => <div>{err}</div>) : null}
-    //   <div>
-    //     <p>Already registered?</p>
-    //     <a href="/login">Log in</a>
-    //   </div>
-    // </div>
   );
 }
 

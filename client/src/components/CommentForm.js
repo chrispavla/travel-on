@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../Context/UserProvider";
-// import { Rating } from "semantic-ui-react";
 import Rating from "@mui/material/Rating";
 import { Modal, Button, Header, Form, Icon } from "semantic-ui-react";
 

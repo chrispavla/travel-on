@@ -1,17 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import {
-  Comment,
-  Icon,
-  Form,
-  Button,
-  Divider,
-  Grid,
-  Modal,
-  Header,
-  Container,
-  Item,
-} from "semantic-ui-react";
+import { Comment, Icon, Grid, Container, Item } from "semantic-ui-react";
 
 function UsersProfile() {
   let { id } = useParams();
@@ -43,7 +32,6 @@ function UsersProfile() {
               </Item.Content>
             </Item>
           </Item.Group>
-
           <Grid columns={2} divided>
             <Grid.Row>
               <Grid.Column width={4}>
@@ -59,7 +47,6 @@ function UsersProfile() {
                   </div>
                 ))}
               </Grid.Column>
-
               <Grid.Column>
                 <h4>{userProfile.first_name}'s activity:</h4>
                 <Comment.Group>

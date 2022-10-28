@@ -1,5 +1,5 @@
 import CommentCard from "./CommentCard";
-import { Comment, Icon, Loader } from "semantic-ui-react";
+import { Comment, Loader } from "semantic-ui-react";
 
 function CommentList({ displayedComments, onDeleteComment, onUpdateComment }) {
   return (

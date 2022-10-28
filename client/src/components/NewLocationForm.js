@@ -1,14 +1,5 @@
-import { useState, useContext } from "react";
-import {
-  Modal,
-  Button,
-  Header,
-  Form,
-  Icon,
-  Container,
-  Grid,
-} from "semantic-ui-react";
-import { UserContext } from "../Context/UserProvider";
+import { useState } from "react";
+import { Modal, Button, Header, Form, Icon, Grid } from "semantic-ui-react";
 
 function NewLocationForm({ onSubmitNewLocation }) {
   const [city, setCity] = useState("");
@@ -17,7 +8,6 @@ function NewLocationForm({ onSubmitNewLocation }) {
   const [longitude, setLongitude] = useState("");
   const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
-  let [user, setUser] = useContext(UserContext);
 
   function handleNewLocationSubmit(e) {
     e.preventDefault();

@@ -1,6 +1,6 @@
 // import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
-import { Container, Icon, List, Button } from "semantic-ui-react";
+import { Container, List, Button } from "semantic-ui-react";
 
 function Home() {
   return (

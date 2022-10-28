@@ -10,8 +10,7 @@ import ReactMapGL, {
 import marker from "../assets/marker.png";
 import NewLocationForm from "./NewLocationForm";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Button from "@mui/material/Button";
-import { Grid, Card, Container, Icon, Header, Modal } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 function Map({ locations, setLocations }) {
   let [user, setUser] = useContext(UserContext);

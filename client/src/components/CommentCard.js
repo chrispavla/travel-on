@@ -87,13 +87,7 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
           </Form>
         </div>
       ) : (
-        // <Comment.Group>
         <Comment>
-          {/* {comment.created_at === comment.updated_at ? (
-              <p>left at: {comment.created_at}</p>
-            ) : (
-              <p>updated at: {comment.updated_at}</p>
-            )} */}
           <Comment.Avatar
             as={Link}
             to={`/users/${comment.user.id}`}
@@ -110,16 +104,6 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
             </Comment.Metadata>
             <Comment.Text>Rated: {"⭐️".repeat(comment.rating)}</Comment.Text>
             <Comment.Text>{comment.comment}</Comment.Text>
-            {/* {user && user.username === comment.user.username && !isEditing ? (
-                <div>
-                  <button onClick={() => handleEditComment(comment)}>
-                    Edit comment
-                  </button>
-                  <button onClick={() => handleDeleteComment(comment)}>
-                    Delete comment
-                  </button>
-                </div>
-              ) : null} */}
             {user && user.username === comment.user.username && !isEditing ? (
               <Comment.Actions>
                 <Comment.Action onClick={() => handleEditComment(comment)}>
@@ -133,27 +117,8 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
               </Comment.Actions>
             ) : null}
           </Comment.Content>
-          {/* <img
-              style={{ borderRadius: "50%", width: "3rem" }}
-              src={comment.user.profile_image}
-            /> */}
-          {/* <p>Rated: {"⭐️".repeat(comment.rating)}</p>
-            <p>
-              {comment.user.username} said: {comment.comment}
-            </p> */}
         </Comment>
-        // </Comment.Group>
       )}
-      {/* {user && user.username === comment.user.username && !isEditing ? (
-        <div>
-          <button onClick={() => handleEditComment(comment)}>
-            Edit comment
-          </button>
-          <button onClick={() => handleDeleteComment(comment)}>
-            Delete comment
-          </button>
-        </div>
-      ) : null} */}
       {error
         ? error.map((err) => (
             <div className="errors">

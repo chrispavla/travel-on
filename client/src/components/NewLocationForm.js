@@ -39,6 +39,7 @@ function NewLocationForm({ onSubmitNewLocation }) {
       if (res.ok) {
         res.json().then((data) => {
           onSubmitNewLocation(data);
+          setOpen(false);
         });
       } else {
         res.json().then((error) => setError(error.errors));
@@ -64,10 +65,16 @@ function NewLocationForm({ onSubmitNewLocation }) {
                 id="btn"
                 style={{ textAlign: "center", marginTop: "30px" }}
               >
-                Add a new location
+                Pin a New Location
               </Button>
             ) : (
-              <div style={{ textAlign: "center", marginTop: "30px" }}>
+              <div
+                style={{
+                  textAlign: "center",
+                  marginTop: "30px",
+                  marginBottom: "20px",
+                }}
+              >
                 <p>Want to add a new location?</p>
                 <a href="/login">Log in</a>
               </div>
@@ -128,7 +135,14 @@ function NewLocationForm({ onSubmitNewLocation }) {
           <Button type="Submit" style={{ backgroundColor: "#98eb6b" }}>
             <Icon name="checkmark" /> Submit
           </Button>
-          {error ? error.map((err) => <div>{err}</div>) : null}
+          {error
+            ? error.map((err) => (
+                <div className="errors">
+                  <Icon name="warning circle"></Icon>
+                  {err}
+                </div>
+              ))
+            : null}
         </Form>
       </Modal.Content>
     </Modal>

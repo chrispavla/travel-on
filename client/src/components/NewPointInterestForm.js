@@ -51,13 +51,7 @@ function NewPointInterestForm({ displayedLocation, addNewPlace }) {
       closeIcon
       size="small"
       open={open}
-      trigger={
-        user ? (
-          <Button id="add-btn">Share a place</Button>
-        ) : (
-          <a href="/login">Log in to share a place</a>
-        )
-      }
+      trigger={<Button id="add-btn">Share a place</Button>}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
     >

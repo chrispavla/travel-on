@@ -15,14 +15,13 @@ import { Grid, Card, Container, Icon, Header, Modal } from "semantic-ui-react";
 
 function Map({ locations, setLocations }) {
   let [user, setUser] = useContext(UserContext);
-  const [isAddingNewForm, setIsAddingNewForm] = useState(false);
 
   const [viewport, setViewport] = useState({
-    latitude: 41.9028,
-    longitude: 12.4964,
+    latitude: 50.5821,
+    longitude: 7.0216,
     width: "80vw",
     height: "80vh",
-    zoom: 2,
+    zoom: 3,
   });
   const [selectedPin, setSelectedPin] = useState(null);
 
@@ -48,7 +47,7 @@ function Map({ locations, setLocations }) {
   return (
     <Container>
       <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <h3>Pin a location you visited on the map</h3>
+        <h3>Explore locations on the map</h3>
       </div>
       <NewLocationForm onSubmitNewLocation={onSubmitNewLocation} />
       <ReactMapGL

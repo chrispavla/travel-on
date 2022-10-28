@@ -2,6 +2,7 @@ import { UserContext } from "../Context/UserProvider";
 import { useState, useContext } from "react";
 import { Comment, Icon, Form, Button } from "semantic-ui-react";
 import Rating from "@mui/material/Rating";
+import { Link } from "react-router-dom";
 
 function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
   let [user, setUser] = useContext(UserContext);
@@ -93,7 +94,11 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
             ) : (
               <p>updated at: {comment.updated_at}</p>
             )} */}
-          <Comment.Avatar as="a" src={comment.user.profile_image} />
+          <Comment.Avatar
+            as={Link}
+            to={`/users/${comment.user.id}`}
+            src={comment.user.profile_image}
+          />
           <Comment.Content>
             <Comment.Author>{comment.user.username}</Comment.Author>
             <Comment.Metadata>
@@ -149,7 +154,14 @@ function CommentCard({ comment, onDeleteComment, onUpdateComment }) {
           </button>
         </div>
       ) : null} */}
-      {error ? error.map((err) => <div>{err}</div>) : null}
+      {error
+        ? error.map((err) => (
+            <div className="errors">
+              <Icon name="warning circle"></Icon>
+              {err}
+            </div>
+          ))
+        : null}
     </div>
   );
 }

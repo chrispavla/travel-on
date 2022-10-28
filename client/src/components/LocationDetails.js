@@ -4,7 +4,18 @@ import { useHistory } from "react-router-dom";
 import NewPointInterestForm from "./NewPointInterestForm";
 import PointOfInterestCard from "./PointOfInterestCard";
 import { UserContext } from "../Context/UserProvider";
-import { Grid, Card, Container, Icon, Header, Modal } from "semantic-ui-react";
+import {
+  Grid,
+  Card,
+  Container,
+  Icon,
+  Header,
+  Modal,
+  Dimmer,
+  Loader,
+  Segment,
+  Image,
+} from "semantic-ui-react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -116,14 +127,20 @@ function LocationDetails() {
             Show all
           </Button>
         </Stack>
-
-        <NewPointInterestForm
-          addNewPlace={addNewPlace}
-          places={places}
-          setPlaces={setPlaces}
-          displayedLocation={displayedLocation}
-          setShowNewPointInterestForm={setShowNewPointInterestForm}
-        />
+        {user ? (
+          <NewPointInterestForm
+            addNewPlace={addNewPlace}
+            places={places}
+            setPlaces={setPlaces}
+            displayedLocation={displayedLocation}
+            setShowNewPointInterestForm={setShowNewPointInterestForm}
+          />
+        ) : (
+          <p style={{ marginTop: "30px", marginBottom: "20px" }}>
+            {" "}
+            <a href="/login">Log in </a> to share a place
+          </p>
+        )}
       </Container>
       <Grid columns={4} padded>
         {displayedLocation !== "" ? (
@@ -137,7 +154,7 @@ function LocationDetails() {
             />
           ))
         ) : (
-          <p>Loading..</p>
+          <Loader active inline="centered" />
         )}
       </Grid>
     </Container>

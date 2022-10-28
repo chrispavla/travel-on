@@ -51,9 +51,10 @@ function UsersProfile() {
                 {userProfile.locations.map((location) => (
                   <div>
                     <Link key={location.id} to={`/locations/${location.id}`}>
-                      <p>
+                      <h4 style={{ color: "#6877f3", marginTop: "5px" }}>
+                        <Icon style={{ color: "#98eb6b" }} name="point"></Icon>{" "}
                         {location.city}, {location.country}
-                      </p>
+                      </h4>
                     </Link>
                   </div>
                 ))}

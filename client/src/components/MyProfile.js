@@ -165,7 +165,14 @@ function MyProfile() {
                       </Button>
                     </Form>
                   </Modal.Content>
-                  {error ? error.map((err) => <div>{err}</div>) : null}
+                  {error
+                    ? error.map((err) => (
+                        <div className="errors">
+                          <Icon name="warning circle"></Icon>
+                          {err}
+                        </div>
+                      ))
+                    : null}
                 </Modal>
                 <Button
                   size="mini"
@@ -188,9 +195,10 @@ function MyProfile() {
                 {user.locations.map((location) => (
                   <div>
                     <Link key={location.id} to={`/locations/${location.id}`}>
-                      <p>
+                      <h4 style={{ color: "#6877f3", marginTop: "5px" }}>
+                        <Icon style={{ color: "#98eb6b" }} name="point"></Icon>{" "}
                         {location.city}, {location.country}
-                      </p>
+                      </h4>
                     </Link>
                   </div>
                 ))}

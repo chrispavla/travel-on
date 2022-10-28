@@ -49,7 +49,21 @@ function Map({ locations, setLocations }) {
       <div style={{ textAlign: "center", marginTop: "30px" }}>
         <h3>Explore locations on the map</h3>
       </div>
-      <NewLocationForm onSubmitNewLocation={onSubmitNewLocation} />
+      {user ? (
+        <NewLocationForm onSubmitNewLocation={onSubmitNewLocation} />
+      ) : (
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "30px",
+            marginBottom: "20px",
+          }}
+        >
+          <p>Want to add a new location?</p>
+          <a href="/login">Log in</a>
+        </div>
+      )}
+
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

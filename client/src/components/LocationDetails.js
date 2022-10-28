@@ -49,12 +49,6 @@ function LocationDetails() {
     setPlaces([...places, data]);
   }
 
-  function handleShowForm() {
-    setShowNewPointInterestForm(
-      (showNewPointInterestForm) => !showNewPointInterestForm
-    );
-  }
-
   function editPlace(editedPlace) {
     let newPlaces = places.map((place) => {
       if (place.id === editedPlace.id) {

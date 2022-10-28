@@ -60,25 +60,9 @@ function NewLocationForm({ onSubmitNewLocation }) {
       trigger={
         <Grid>
           <Grid.Column textAlign="center">
-            {user ? (
-              <Button
-                id="btn"
-                style={{ textAlign: "center", marginTop: "30px" }}
-              >
-                Pin a New Location
-              </Button>
-            ) : (
-              <div
-                style={{
-                  textAlign: "center",
-                  marginTop: "30px",
-                  marginBottom: "20px",
-                }}
-              >
-                <p>Want to add a new location?</p>
-                <a href="/login">Log in</a>
-              </div>
-            )}
+            <Button id="btn" style={{ textAlign: "center", marginTop: "30px" }}>
+              Pin a New Location
+            </Button>
           </Grid.Column>
         </Grid>
       }

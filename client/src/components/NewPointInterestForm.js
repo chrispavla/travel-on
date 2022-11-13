@@ -34,16 +34,15 @@ function NewPointInterestForm({ displayedLocation, addNewPlace }) {
         res.json().then((data) => {
           addNewPlace(data);
           setOpen(!open);
+          setName("");
+          setPhoto("");
+          setNote("");
+          setCategory("");
         });
       } else {
         res.json().then((error) => setError(error.errors));
       }
     });
-
-    setName("");
-    setPhoto("");
-    setNote("");
-    setCategory("");
   }
 
   return (

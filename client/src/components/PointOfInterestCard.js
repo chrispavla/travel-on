@@ -89,10 +89,6 @@ function PointOfInterestCard({
       .then(deletePointOfInterest(deletedPoint));
   }
 
-  function handleEditPointOfInterest() {
-    setIsShown((isShown) => !isShown);
-  }
-
   return (
     <Grid.Column>
       <Card>

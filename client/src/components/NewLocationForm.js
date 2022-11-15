@@ -30,16 +30,15 @@ function NewLocationForm({ onSubmitNewLocation }) {
         res.json().then((data) => {
           onSubmitNewLocation(data);
           setOpen(false);
+          setCity("");
+          setCountry("");
+          setLatitude("");
+          setLongitude("");
         });
       } else {
         res.json().then((error) => setError(error.errors));
       }
     });
-
-    setCity("");
-    setCountry("");
-    setLatitude("");
-    setLongitude("");
   }
 
   return (

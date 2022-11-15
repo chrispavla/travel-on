@@ -210,7 +210,14 @@ function MyProfile() {
                     <Comment>
                       <Comment.Avatar as="a" src={comment.user.profile_image} />
                       <Comment.Content>
-                        <Comment.Author>{comment.user.username}</Comment.Author>
+                        <Comment.Author>
+                          {comment.user.username} visited{" "}
+                          <Link
+                            to={`/locations/${comment.point_of_interest.location_id}`}
+                          >
+                            {comment.point_of_interest.name}
+                          </Link>
+                        </Comment.Author>
                         <Comment.Metadata>
                           {comment.created_at === comment.updated_at ? (
                             <div>left at: {comment.created_at}</div>

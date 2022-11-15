@@ -59,7 +59,12 @@ function UsersProfile() {
                         />
                         <Comment.Content>
                           <Comment.Author>
-                            {comment.user.username}
+                            {comment.user.username} visited{" "}
+                            <Link
+                              to={`/locations/${comment.point_of_interest.location_id}`}
+                            >
+                              {comment.point_of_interest.name}
+                            </Link>
                           </Comment.Author>
                           <Comment.Metadata>
                             {comment.created_at === comment.updated_at ? (

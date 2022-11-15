@@ -83,7 +83,7 @@ npm start —prefix client
 <img width="1425" alt="Screen Shot 2022-11-15 at 1 08 08 PM" src="https://user-images.githubusercontent.com/105557320/201994419-a3d5a9f4-75d4-4da0-89f4-fd974a094eda.png">
 
 ### User comments and add a comment on point of interest
-<img width="1425" alt="Screen Shot 2022-11-15 at 1 08 44 PM" src="https://user-images.githubusercontent.com/105557320/201994526-235083f3-060f-4973-8674-7ed4b7184bc8.png">
+<img width="1425" alt="Screen Shot 2022-11-15 at 1 18 06 PM" src="https://user-images.githubusercontent.com/105557320/201995817-20754680-9de4-4e73-8e73-a97b90ead5a6.png">
 
 ### User profile pge
 <img width="1425" alt="Screen Shot 2022-11-15 at 1 07 46 PM" src="https://user-images.githubusercontent.com/105557320/201994591-7acecc55-940d-42ac-beaf-b68614d3ef08.png">

@@ -1,5 +1,7 @@
 # Travel-on
-Travel-On brings together a community of people who love to travel. Get inspiration for your trips and share your travel experiences. Map locations of your travels. Discover new places through personal recommendations, interesting facts and local tips. Share the best places around the world
+Travel-On brings together a community of people who love to travel. Get inspiration for your trips and share your travel experiences. Map locations of your travels. Discover new places through personal recommendations, interesting facts and local tips. Share the best places around the world.
+
+Full CRUD which allows users to share travel experiences through personal recommendations, get inspiration for trips, and map locations of travels using a dynamic custom map, using Mapbox API and React-Map-Gl to display custom markers with popups.
 
 ## User Stories
 
